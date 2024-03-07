@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meow Chat</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" href="https://meowchat.me/wp-content/uploads/2024/02/meow.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"
+        integrity="sha512-Xm9qbB6Pu06k3PUwPj785dyTl6oHxgsv9nHp7ej7nCpAqGZT3OZpsELuCYX05DdonFpTlBpXMOxjavIAIUwr0w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="app.js"></script>
+
+
+
+</head>
+
+<body>
+    <main>
+
+        <img class="logo" src="https://snipboard.io/R5E1Mp.jpg" alt="logo">
+
+        <form class="form-join">
+            <input type="text" class="join" id="name" maxlength="8" placeholder="Usuario" size="5" required>
+            <button id="join" type="sumbit">Unirse</button>
+            <button id="exit" type="submit">Salir</button>
+        </form>
+
+        <p class="user-list"></p>
+        <ul class="chat-display"></ul>
+
+        <form class="form-msg">
+            <div class="box_input">
+                <div style="position: relative;">
+                    <input type="text" class="message" id="message" required disabled>
+                    <label class="label_input">Mensaje</label>
+                    <svg class="icon-input emoji disabled" xmlns="http://www.w3.org/2000/svg" width="20px" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                    </svg>
+                </div>               
+
+
+
+                <div>
+                    <button type="submit" class="send disabled" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" fill="none" viewBox="0 0 24 24"
+                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        </svg>
+                    </button>
+                </div>
+
+
+            </div>
+
+
+            <div class="container_emojis">
+                <span id="emoji">😔</span>
+                <span id="emoji">😏</span>
+                <span id="emoji">😄</span>
+                <span id="emoji">🧐</span>
+                <span id="emoji">🥱</span>
+                <span id="emoji">😭</span>
+                <span id="emoji">😊</span>
+                <span id="emoji">😍</span>
+                <span id="emoji">🥰</span>
+                <span id="emoji">🤭</span>
+                <span id="emoji">🥱</span>
+                <span id="emoji">👀</span>
+                <span id="emoji">👁️</span>
+                <span id="emoji">😱</span>
+                <span id="emoji">👅</span>
+                <span id="emoji">💦</span>
+                <span id="emoji">🪽</span>
+                <span id="emoji">🫦</span>
+                <span id="emoji">👄</span>
+                <span id="emoji">🔥</span>
+                <span id="emoji">😈</span>
+                <span id="emoji">😞</span>
+                <span id="emoji">❤️</span>
+                <span id="emoji">👿</span>
+                <span id="emoji">👉</span>
+                <span id="emoji">👈</span>
+                <span id="emoji">😠</span>
+                <span id="emoji">😡</span>
+                <span id="emoji">😘</span>
+                <span id="emoji">🥵</span>
+                <span id="emoji">🤬</span>
+                <span id="emoji">😾</span>
+                <span id="emoji">😿</span>
+                <span id="emoji">🫸</span>
+                <span id="emoji">🫷</span>
+
+            </div>
+
+        </form>
+    </main>
+
+    <script>
+        let input = document.getElementById('message');
+        let emoji = document.querySelectorAll('#emoji');
+        let iconEmoji = document.querySelector('.icon-input');
+        let containerEmoji = document.querySelector('.container_emojis');
+        let send = document.querySelector('.send');
+        let label = document.querySelector('.label_input');
+
+        iconEmoji.addEventListener('click', () => {
+            containerEmoji.classList.toggle('open_container_emojis');
+        });
+
+        function funcionInput() {
+            if (input.value === "") {
+                label.classList.remove('add_toogle');
+                send.classList.add('disabled');
+                send.setAttribute('disabled', send);
+
+            } else {
+                label.classList.add('add_toogle');
+                send.classList.remove('disabled');
+                send.removeAttribute('disabled');
+            }
+        }
+
+        input.addEventListener('keyup', funcionInput);
+
+
+
+        input.addEventListener('focus', () => {
+            containerEmoji.classList.remove('open_container_emojis');
+        });
+
+
+
+        for (const emojis of emoji) {
+            emojis.addEventListener('click', () => {
+                input.value += emojis.textContent;
+                if (input != "") {
+                    label.classList.add('add_toogle');
+                }
+                funcionInput();
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

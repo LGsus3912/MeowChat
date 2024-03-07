@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+  
+body {
+    background-color: #2E3440;
+    color: #000000;
+
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+  
+main {
+    height: 100vh;
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+  
+form {
+    width: 100%;
+    margin: auto;
+    max-width: 600px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: .25rem;
+}
+
+.form-msg{
+    position: relative;
+    .box_input{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        .message {
+            background-color: #ffffff00;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            padding: 10px 14px;
+            outline: none;
+            width: 250px;
+            height: 45px;
+            font-family: 'Raleway', sans-serif;
+            color: #fff;
+            &:focus {
+                border-color: #FB4800;
+            }
+            &:focus + .label_input{
+                top: 0;
+                color: #FB4800;
+                background-color: #2E3440;
+                padding: 0 5px;
+                font-size: 14px;
+            }
+        }
+
+        .label_input{
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            padding: 0 4px;
+            pointer-events: none;
+            background-color: #ffffff00;
+            transition: all 100ms ease;
+            white-space: nowrap;
+            cursor: text;
+            color: #ccc;
+            font-size: 16px;
+            &.add_toogle{
+                top: 0;
+                color: #FB4800;
+                background-color: #2E3440;
+                padding: 0 5px;
+                font-size: 14px;
+            }
+        }
+
+        .icon-input{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #ccc;
+            cursor: pointer;
+            &:hover{
+                color: #FB4800;
+            }
+            &.disabled{
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+
+        .send{
+            position: relative;
+            color: #ccc;
+            cursor: pointer;
+            background-color: #FB4800;
+            border-radius: 50%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            outline: none;
+            border: 0;
+
+            &:hover{
+                background-color: #f86023;
+            }
+
+            &:disabled{
+                background-color: #616161 !important;
+            }
+
+
+        }
+    }
+
+    .container_emojis{
+        background-color: #2E3440ff;
+        position: absolute;
+        display: none;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 5px -2px rgb(0, 0, 0/20%), 0 7px 10px 1px rgb(0, 0, 0/14%), 
+            0 2px 16px 1px rgb(0, 0, 0/12%);
+        top: -510%;
+        right: 34%;
+        span{
+            cursor: pointer;
+        }
+        &.open_container_emojis{
+            display: grid;
+        }
+
+    }
+    
+
+}
+  
+.join {
+    flex-grow: 1;
+    max-width: calc(80% - .25rem);
+    border-radius: 6px;
+    padding: .5rem;
+}
+  
+button {
+    width: 20%;
+    border-radius: 6px;
+    padding: .5rem;
+}
+  
+.join,
+button {
+    border: none;
+    border-radius: 10px;
+    background-color: #FB4800;
+    color: #ffffff;
+    padding: .5rem;
+}
+
+#exit {
+    display: none;
+}
+
+.message:disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
+  
+.chat-display {
+    background-color: #C1D9E8;
+    list-style-type: none;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 6px;
+    margin: 1rem auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    overflow: auto;
+    flex-grow: 1;
+}
+  
+.post {
+    background-color: #333;
+    border-radius: 6px;
+    padding: 0 0 .25rem;
+    margin: .5rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    order: -1;
+    text-align: center;
+}
+  
+.post--left {
+    width: 55%;
+    align-self: flex-start;
+    text-align: left;
+}
+  
+.post--right {
+    width: 55%;
+    align-self: flex-end;
+    text-align: right;
+}
+  
+.post__header {
+    color: #ffffff;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+}
+  
+.post__header--user {
+    background-color: #FB4800;
+}
+  
+.post__header--reply {
+    background-color: #6f4caf;
+}
+  
+.post__header--name {
+    font-weight: bold;
+    font-size: 14px;
+}
+  
+.post__header--time {
+    font-size: .8rem;
+}
+  
+.post__text {
+    margin-top: 8px;
+    color: #fff;
+    padding: .25rem .5rem;
+    font-size: 16px;
+}
+  
+.user-list,
+.activity {
+    width: 100%;
+    min-height: 2.65rem;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: .75rem .25rem;
+    background-color: #ECECEC;
+    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-direction: row;
+}
+
+.activity {
+    font-style: italic;
+}
+
+
+
+
+
+
+
+
+/* Estilos para el logo */
+.logo {
+    width: 150px; /* Ancho del logo, ajusta según sea necesario */
+    height: auto; /* Altura automática para mantener la proporción */
+    display: block; /* Para asegurarse de que se centre correctamente */
+    margin: 0 auto; /* Centrar el logo horizontalmente */
+}
+
+
+
+
+
+

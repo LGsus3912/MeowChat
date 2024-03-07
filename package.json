@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "emoji-mart": "^5.5.2",
+    "mongodb": "^6.3.0",
+    "mysql": "^2.18.1",
+    "pg": "^8.11.3"
+  }
+}
